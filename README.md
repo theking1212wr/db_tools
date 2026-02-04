@@ -33,31 +33,28 @@ brew install mysql-client pv
 
 ## Installation
 
-### Option 1: Run directly
-
-Clone the repository and run commands directly:
+### Quick Install (Recommended)
 
 ```bash
-git clone https://github.com/the-perfect-developer/db_tools.git
-cd db_tools
-./dbtools.sh --help
+curl -fsSL https://raw.githubusercontent.com/the-perfect-developer/db_tools/main/get.sh | sudo bash
 ```
 
-### Option 2: Install to PATH
+This installs dbtools to `/opt/dbtools` and creates a symlink in `/usr/local/bin`.
 
-Install to `/usr/local/bin` for system-wide access:
+To uninstall:
+
+```bash
+sudo rm -rf /opt/dbtools /usr/local/bin/dbtools
+```
+
+### Manual Install
+
+Clone the repository and install manually:
 
 ```bash
 git clone https://github.com/the-perfect-developer/db_tools.git
 cd db_tools
 sudo ./install.sh --install
-```
-
-Now you can run `dbtools` from anywhere:
-
-```bash
-dbtools --help
-dbtools dump -u root -d mydb
 ```
 
 To uninstall:
