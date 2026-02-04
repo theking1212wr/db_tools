@@ -31,6 +31,41 @@ sudo apt install mysql-client pv
 brew install mysql-client pv
 ```
 
+## Installation
+
+### Option 1: Run directly
+
+Clone the repository and run commands directly:
+
+```bash
+git clone https://github.com/the-perfect-developer/db_tools.git
+cd db_tools
+./dbtools.sh --help
+```
+
+### Option 2: Install to PATH
+
+Install to `/usr/local/bin` for system-wide access:
+
+```bash
+git clone https://github.com/the-perfect-developer/db_tools.git
+cd db_tools
+sudo ./install.sh --install
+```
+
+Now you can run `dbtools` from anywhere:
+
+```bash
+dbtools --help
+dbtools dump -u root -d mydb
+```
+
+To uninstall:
+
+```bash
+sudo ./install.sh --uninstall
+```
+
 ## Usage
 
 Use the unified `dbtools.sh` command:
