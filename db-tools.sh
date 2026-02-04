@@ -19,7 +19,7 @@ get_available_commands() {
 show_help() {
     echo "db-tools - MySQL database dump and restore utilities"
     echo ""
-    echo "Usage: db-tools <command> [options]"
+    echo "Usage: ./db-tools.sh <command> [options]"
     echo ""
     echo "Commands:"
     
@@ -30,7 +30,7 @@ show_help() {
     done
     
     echo ""
-    echo "Run 'db-tools <command> --help' for more information on a command."
+    echo "Run './db-tools.sh <command> --help' for more information on a command."
 }
 
 resolve_script() {

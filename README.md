@@ -28,10 +28,10 @@ brew install mysql-client pv
 
 ## Usage
 
-Use the unified `db-tools` command:
+Use the unified `db-tools.sh` command:
 
 ```bash
-db-tools <command> [options]
+./db-tools.sh <command> [options]
 
 Commands:
   dump      Dump a MySQL database
@@ -42,14 +42,14 @@ Commands:
 
 ```bash
 # Dump a database
-db-tools dump -u root -d mydb
+./db-tools.sh dump -u root -d mydb
 
 # Restore a database
-db-tools restore -u root -d mydb -f backup.sql
+./db-tools.sh restore -u root -d mydb -f backup.sql
 
 # Get help
-db-tools --help
-db-tools dump --help
+./db-tools.sh --help
+./db-tools.sh dump --help
 ```
 
 ## Commands
@@ -59,7 +59,7 @@ db-tools dump --help
 Dump a MySQL database with optional table filtering.
 
 ```bash
-db-tools dump [OPTIONS]
+./db-tools.sh dump [OPTIONS]
 ```
 
 **Options:**
@@ -80,16 +80,16 @@ db-tools dump [OPTIONS]
 
 ```bash
 # Basic dump with default 500 record limit
-db-tools dump -u root -d mydb
+./db-tools.sh dump -u root -d mydb
 
 # Dump with custom record limit
-db-tools dump -u root -d mydb --limit=1000
+./db-tools.sh dump -u root -d mydb --limit=1000
 
 # Dump with specific tables to be dumped fully
-db-tools dump -u root -d mydb -t users,orders,products
+./db-tools.sh dump -u root -d mydb -t users,orders,products
 
 # Full example with all options
-db-tools dump -u root -p secret -h 192.168.1.100 -P 3306 -d mydb -o backup.sql -l 2000 -t users,orders
+./db-tools.sh dump -u root -p secret -h 192.168.1.100 -P 3306 -d mydb -o backup.sql -l 2000 -t users,orders
 ```
 
 ### restore
@@ -97,7 +97,7 @@ db-tools dump -u root -p secret -h 192.168.1.100 -P 3306 -d mydb -o backup.sql -
 Restore a MySQL database from a SQL file.
 
 ```bash
-db-tools restore [OPTIONS]
+./db-tools.sh restore [OPTIONS]
 ```
 
 **Options:**
@@ -116,10 +116,10 @@ db-tools restore [OPTIONS]
 
 ```bash
 # Basic restore
-db-tools restore -u root -d mydb -f backup.sql
+./db-tools.sh restore -u root -d mydb -f backup.sql
 
 # Restore to remote server
-db-tools restore -u root -p secret -h 192.168.1.100 -P 3306 -d mydb -f backup.sql
+./db-tools.sh restore -u root -p secret -h 192.168.1.100 -P 3306 -d mydb -f backup.sql
 ```
 
 ## How It Works
