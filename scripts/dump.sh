@@ -13,14 +13,14 @@ show_help() {
     echo "  -P, --port <port>         Database port (default: 3306)"
     echo "  -d, --database <name>     Database name (required)"
     echo "  -o, --output <file>       Output SQL file (default: <database>.sql)"
-    echo "  -l, --limit <number>      Max records per table for non-full tables (default: 500)"
-    echo "  -t, --tables <list>       Comma-separated list of tables to dump fully"
+    echo "  -l, --limit <number>      Max records per table (without this, dumps all records)"
+    echo "  -t, --tables <list>       Comma-separated list of tables to dump fully (requires -l)"
     echo "  --help                    Show this help message"
     echo ""
     echo "Example:"
-    echo "  ./dbtools.sh dump -u root -p secret -h localhost -P 3306 -d mydb"
-    echo "  ./dbtools.sh dump --user=root --database=mydb --limit=1000"
-    echo "  ./dbtools.sh dump -u root -d mydb -t users,orders,products"
+    echo "  ./dbtools.sh dump -u root -d mydb                          # Full dump"
+    echo "  ./dbtools.sh dump -u root -d mydb --limit=1000             # Limit all tables to 1000 records"
+    echo "  ./dbtools.sh dump -u root -d mydb -l 500 -t users,orders   # Limit to 500, but full dump for users,orders"
 }
 
 DB_USER=""
@@ -29,7 +29,7 @@ DB_HOST="localhost"
 DB_PORT="3306"
 DB_NAME=""
 DUMP_FILE=""
-RECORD_LIMIT="500"
+RECORD_LIMIT=""
 FULL_TABLES=""
 
 while [[ $# -gt 0 ]]; do
@@ -121,6 +121,14 @@ if [ -z "$DB_USER" ] || [ -z "$DB_NAME" ]; then
     exit 1
 fi
 
+if [ -n "$FULL_TABLES" ] && [ -z "$RECORD_LIMIT" ]; then
+    echo "Error: --tables requires --limit to be set"
+    echo "       (Use -l to limit other tables, -t to specify which tables get full dump)"
+    echo ""
+    show_help
+    exit 1
+fi
+
 if [ -z "$DUMP_FILE" ]; then
     DUMP_FILE="${DB_NAME}.sql"
 fi
@@ -184,7 +192,7 @@ for t in "${TABLES[@]}"; do
         continue
     fi
 
-    if is_selected_table "$t"; then
+    if [ -z "$RECORD_LIMIT" ] || is_selected_table "$t"; then
         echo "[$CURRENT/$TOTAL_TABLES] Dumping table (full): $t"
         
         if mysqldump $MYSQL_OPTS $DB_NAME $t \
