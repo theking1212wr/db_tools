@@ -26,14 +26,40 @@ sudo apt install mysql-client pv
 brew install mysql-client pv
 ```
 
-## Scripts
+## Usage
 
-### db_dumper.sh
+Use the unified `db-tools` command:
+
+```bash
+db-tools <command> [options]
+
+Commands:
+  dump      Dump a MySQL database
+  restore   Restore a MySQL database from a SQL file
+```
+
+**Examples:**
+
+```bash
+# Dump a database
+db-tools dump -u root -d mydb
+
+# Restore a database
+db-tools restore -u root -d mydb -f backup.sql
+
+# Get help
+db-tools --help
+db-tools dump --help
+```
+
+## Commands
+
+### dump
 
 Dump a MySQL database with optional table filtering.
 
 ```bash
-./db_dumper.sh [OPTIONS]
+db-tools dump [OPTIONS]
 ```
 
 **Options:**
@@ -54,24 +80,24 @@ Dump a MySQL database with optional table filtering.
 
 ```bash
 # Basic dump with default 500 record limit
-./db_dumper.sh -u root -d mydb
+db-tools dump -u root -d mydb
 
 # Dump with custom record limit
-./db_dumper.sh -u root -d mydb --limit=1000
+db-tools dump -u root -d mydb --limit=1000
 
 # Dump with specific tables to be dumped fully
-./db_dumper.sh -u root -d mydb -t users,orders,products
+db-tools dump -u root -d mydb -t users,orders,products
 
 # Full example with all options
-./db_dumper.sh -u root -p secret -h 192.168.1.100 -P 3306 -d mydb -o backup.sql -l 2000 -t users,orders
+db-tools dump -u root -p secret -h 192.168.1.100 -P 3306 -d mydb -o backup.sql -l 2000 -t users,orders
 ```
 
-### db_restore.sh
+### restore
 
 Restore a MySQL database from a SQL file.
 
 ```bash
-./db_restore.sh [OPTIONS]
+db-tools restore [OPTIONS]
 ```
 
 **Options:**
@@ -90,10 +116,10 @@ Restore a MySQL database from a SQL file.
 
 ```bash
 # Basic restore
-./db_restore.sh -u root -d mydb -f backup.sql
+db-tools restore -u root -d mydb -f backup.sql
 
 # Restore to remote server
-./db_restore.sh -u root -p secret -h 192.168.1.100 -P 3306 -d mydb -f backup.sql
+db-tools restore -u root -p secret -h 192.168.1.100 -P 3306 -d mydb -f backup.sql
 ```
 
 ## How It Works
