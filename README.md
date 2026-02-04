@@ -1,5 +1,16 @@
 # db-tools
 
+```
+     _ _     _              _     
+  __| | |__ | |_ ___   ___ | |___ 
+ / _` | '_ \| __/ _ \ / _ \| / __|
+| (_| | |_) | || (_) | (_) | \__ \
+ \__,_|_.__/ \__\___/ \___/|_|___/
+
+MySQL Database Utilities
+By Dilan D Chandrajith - The Perfect Developer
+```
+
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Bash](https://img.shields.io/badge/Shell-Bash-green.svg)](https://www.gnu.org/software/bash/)
 [![MySQL](https://img.shields.io/badge/Database-MySQL-orange.svg)](https://www.mysql.com/)
