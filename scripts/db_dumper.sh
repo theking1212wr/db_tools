@@ -1,7 +1,7 @@
 #!/bin/bash
 
 show_help() {
-    echo "Usage: $0 [OPTIONS]"
+    echo "Usage: db-tools dump [OPTIONS]"
     echo ""
     echo "Dump a MySQL database with optional table filtering."
     echo ""
@@ -17,9 +17,9 @@ show_help() {
     echo "  --help                    Show this help message"
     echo ""
     echo "Example:"
-    echo "  $0 -u root -p secret -h localhost -P 3306 -d mydb"
-    echo "  $0 --user=root --database=mydb --limit=1000"
-    echo "  $0 -u root -d mydb -t users,orders,products"
+    echo "  db-tools dump -u root -p secret -h localhost -P 3306 -d mydb"
+    echo "  db-tools dump --user=root --database=mydb --limit=1000"
+    echo "  db-tools dump -u root -d mydb -t users,orders,products"
 }
 
 DB_USER=""

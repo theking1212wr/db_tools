@@ -1,7 +1,7 @@
 #!/bin/bash
 
 show_help() {
-    echo "Usage: $0 [OPTIONS]"
+    echo "Usage: db-tools restore [OPTIONS]"
     echo ""
     echo "Restore a MySQL database from a SQL file."
     echo ""
@@ -15,8 +15,8 @@ show_help() {
     echo "  --help                    Show this help message"
     echo ""
     echo "Example:"
-    echo "  $0 -u root -p secret -h localhost -P 3306 -d mydb -f backup.sql"
-    echo "  $0 --user=root --password=secret --database=mydb --file=backup.sql"
+    echo "  db-tools restore -u root -p secret -h localhost -P 3306 -d mydb -f backup.sql"
+    echo "  db-tools restore --user=root --password=secret --database=mydb --file=backup.sql"
 }
 
 DB_USER=""
