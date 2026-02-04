@@ -1,5 +1,6 @@
 #!/bin/bash
 # @description Update dbtools to the latest version
+# @category System
 
 INSTALL_DIR="/opt/dbtools"
 REPO_URL="https://github.com/the-perfect-developer/db_tools.git"
